@@ -1,0 +1,51 @@
+<h1>{{booksTitle}}</h1>
+          <a ui-sref='main'>Home</a><br />
+          <input type="checkbox" name="create" ng-model="create" />Create New Book
+            <form ng-show="create" id="createForm">
+                <div class="form-group">
+                    <input type="text" name='cat' placeholder="Category" ng-model="cat">
+                    <input type="text" name='name' placeholder="Name" ng-model="name" required>
+                    <input type="text" name='author' placeholder="Author" ng-model="author">
+                    <input type="text" name='series_t' placeholder="Series" ng-model="series_t">
+                    <input type="text" name='sequence_i' placeholder="Sequence" ng-model="sequence_i">
+                    <input type="text" name='genre' placeholder="Genre" ng-model="genre">
+                    <input type="text" name='price' placeholder="Price(in $)" ng-model="price">
+                    <input type="text" name='pages_i' placeholder="Pages" ng-model="pages_i">
+                    <input type="checkbox" name='inStock' ng-model="inStock">In Stock
+                    <!-- <input type="radio" name='inStock' ng-model="inStock">In Stock
+                    <input type="radio" name='inStock' ng-model="notInStock">Not In Stock -->
+                </div><br />
+                <button type="submit" ng-click="createBook()">Add</button>
+            </form>
+                  <h3>{{message}}</h3>
+                  <ul ng-repeat="book in books" | orderBy='book.name'>
+                    <li>
+                      <p>{{book.name | uppercase}}, by {{book.author | uppercase}}</p>
+                      <p ng-show="book.price">Price: ${{book.price}}</p>
+                      <p ng-show="book.cat">Category: {{book.cat}}| uppercase</p>
+                      <p ng-show="book.series_t">Series: {{book.series_t}}| uppercase</p>
+                      <p ng-show="book.sequence_i">Sequence: {{book.sequence_i}}</p>
+                      <p ng-show="book.genre">Genre: {{book.genre}}| uppercase</p>
+                      <p ng-show="book.inStock">In Stock!!!</p>
+                      <p ng-show="book.pages_i">Pages: {{book.pages_i}}</p>
+                      <button ng-click="delBook(book.id)">Delete</button>
+                      <input type="checkbox" name="edit" ng-model="edit"  />Edit Book
+                      <form ng-show="edit" id="updateForm">
+                        <div class="form-grp">
+                            Category: <input type="text" name='updateCat' placeholder="Category" value={{book.cat}} ng-model="ucat">
+                            Name: <input type="text" name='updateName' placeholder="Name" value={{book.name}} ng-model="uname">
+                            Author: <input type="text" name='updateAuthor' placeholder="Author" value={{book.author}} ng-model="uauthor">
+                            Series: <input type="text" name='updateSeries' placeholder="Series" value={{book.series_t}} ng-model="useries_t">
+                            Sequence: <input type="text" name='updateSequence' placeholder="Sequence" value={{book.sequence_i}} ng-model="usequence_i">
+                            Genre: <input type="text" name='updateGenre' placeholder="Genre" value={{book.genre}} ng-model="ugenre">
+                            Price: <input type="text" name='updatePrice' placeholder="Price(in $)" value={{book.price}} ng-model="uprice">
+                            Pages: <input type="text" name='updatePages' placeholder="Pages" value={{book.pages_i}} ng-model="upages_i">
+                            In Stock: <input type="checkbox" name='update_inStock' ng-model="uinstock">
+                            <!-- <input type="radio" name='inStock' ng-model="uinstock">In Stock
+                            <input type="radio" name='inStock' ng-model="unotntock">Not In Stock -->
+                            <br />
+                            <button type="button" ng-click="updateBook(book.id)">Update</button>
+                        </div>
+                    </form>
+                  </li>
+                </ul>

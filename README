@@ -1,0 +1,114 @@
+================================================================================
+= LifeShare Engineering Acumen Assessment
+================================================================================
+
+
+WHY?
+--------------------------------------------------------------------------------
+While there is a lot that we hope to learn about you during the normal interview
+process, there are certain skills that we can't really assess unless you actually
+write some code. How do you solve problems? Do you write clean, maintainable
+code? Can you quickly pick up new concepts/patterns and apply them in your work?
+What does a "good" solution look like to you? This project exercises some of the
+engineering muscles you'd use on the job as a developer with LifeShare.
+
+
+WHAT?
+--------------------------------------------------------------------------------
+To test your proficiency with the Angular web framework and eye for design, we
+have created a minimal application that contains some starting code with a main view
+and a view for books.  Your primary task is to use the endpoints from the Server
+to perform basic CRUD (create/read/update/delete) operations with the UI.
+Feel free to design and style the UI as you see fit using any framework(s) desired,
+however it should have the following functionality:
+ * Navigate back to home screen from books
+ * List all the books and be able to select one to edit
+ * Link to create a new book from the books screen
+
+We would also like to assess your abilities to write server code to perform
+modifications to a database.  The current code is mocked by returning sample
+JSON data for the GET requests.  Ideally, we would like to see the implementation
+of basic CRUD operations for the book collection.
+
+How you accomplish this is mostly up to you. We've provided a starter app that
+fires up a simple web server and static page server that you can modify as needed to accomplish these
+tasks. You just fill in the guts. You decide on the appropriate fields to store,
+the abstractions you want to use, what should be commented, etc. Treat these
+decisions as though they were the ones you'd make if we hired you.
+
+
+THE STARTER CODE
+--------------------------------------------------------------------------------
+To kick-start your project, we've provided a starter template that fires up a
+Java-based web server on port 8888 and shuts down the server/process when you hit
+the ENTER key. Here are the bash-style commands to compile/run the code.
+
+ * To compile the code
+
+     $ cd [path-to-project-root]
+     $ mkdir out
+     $ javac -classpath src/*:web-server.jar -d out src/*
+
+ * To run the project
+
+     $ cd [path-to-project-root]
+     $ java -cp out/:web-server.jar ApiMain
+
+ * When it's running you can test it on the console (first is the GET, second the POST)
+
+     $ curl http://localhost:8888/hello
+     $ curl --data "foo=bar" http://localhost:8888/hello
+
+There are only 3 files in the server application:
+
+ * ApiMain: The main entry point where the web server is configured/started/stopped.
+ * DataStore: A mock database to let you persist whatever data you need to. This
+   simply writes each record to a file in the 'db' directory of the project root.
+ * BusinessObject: An interface that contains the bare minimum info needed by
+   DataStore to properly take care of business. It denotes a record that can be
+   written and read from the data store.
+
+
+To keep life simple, don't worry about creating packages or anything. Just put
+all of your new classes directly into the 'src' folder and you won't have to modify
+the compile/run commands at all. We won't hold that against you :)
+
+To run the UI Framework
+ * Install
+    $ cd [path-to-ui-folder]
+    $ npm install
+ * Install
+    $ cd [path-to-ui-folder]
+    $ npm start
+
+There are six files that should be enough to get started:
+    * app.js
+        The main file where the app dependencies for our controllers are set up
+    * index.html
+        The main page that loads all our framework dependencies and controllers
+
+    Controllers
+        * main
+            The controller for the main screen
+        * book
+            The controller for the book code
+    Views
+        * main
+            The unstyled view that is displayed on the main screen
+        * books
+            The unstyled view that should display the collection of books
+
+
+HELPFUL RESOURCES
+--------------------------------------------------------------------------------
+There are comments in ApiMain which can help to get you started but here are
+some things worth pointing out to get you started:
+
+ * We utilize "Spark" as our web server and API routing framework. It's really
+   simple to use and their documentation at http://sparkjava.com/ is quite good.
+ * Notice that DataStore's operations return CompletableFuture instances. These
+   allow us to make our database access non-blocking (if we choose) and write
+   better asynchronous code. While this project is not actually asynchronous,
+   our production code is, so make sure you can be comfortable with these. Here
+   is a great primer on these things:
+   http://www.nurkiewicz.com/2013/05/java-8-definitive-guide-to.html
