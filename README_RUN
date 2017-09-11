@@ -1,0 +1,10 @@
+Frontend: Used AngularJS for front end.
+        : localhost:3000
+Backend : Used NodeJS with express framework for backend(index.js)
+        : files located in "backend" folder in "interview-master" folder.
+        : need to npm install body-parser, cors, morgan.
+        : port 9999
+Database: PostgreSql, sequelize
+        : sequelize db:migrate
+
+KINDLY LET ME KNOW IF YOU HAVE ANY QUESTIONS.
